@@ -951,9 +951,10 @@ export function createRunExecutor(deps: ExecutorDeps) {
             .then((rules) => rules as ActionApprovalRule[]);
           return approvalRulesPromise;
         };
-        const reviewPreparation = run.trigger === "brandwell_outreach_review";
+        const socialReview = run.trigger === "brandwell_socialstreams_review";
+        const reviewPreparation = run.trigger === "brandwell_outreach_review" || socialReview;
         const reviewToolAllowed = (name: string) =>
-          reviewPreparationToolAllowed(name, readOnlyConnectorTools.has(name));
+          reviewPreparationToolAllowed(name, readOnlyConnectorTools.has(name), socialReview);
         const tools = [...builtins, ...exposedConnectorTools].filter(
           (tool) => !reviewPreparation || reviewToolAllowed(tool.name),
         );

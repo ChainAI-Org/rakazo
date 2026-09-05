@@ -1496,8 +1496,9 @@ export function mountBrandwellManagementRoutes(app: Hono, deps: BrandwellManagem
               taskId: task.id,
               serviceIdentityId: bot.serviceIdentityId,
               status: "queued",
-              trigger:
-                input.value.mode === "execute"
+              trigger: input.value.socialSignal
+                ? "brandwell_socialstreams_review"
+                : input.value.mode === "execute"
                   ? "brandwell_outreach_action"
                   : "brandwell_outreach_review",
               clientNonce,

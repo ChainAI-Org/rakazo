@@ -111,7 +111,7 @@ describe("Outreach native AIMEE handoff", () => {
     expect((await f.request(body)).status).toBe(200);
     expect(f.taskCreate).toHaveBeenCalledTimes(1);
     expect(f.taskCreate.mock.calls[0]?.[0].data.prompt).toContain("SocialStreams opportunity");
-    expect(f.runCreate.mock.calls[0]?.[0].data.trigger).toBe("brandwell_outreach_review");
+    expect(f.runCreate.mock.calls[0]?.[0].data.trigger).toBe("brandwell_socialstreams_review");
   });
   it("passes a configured instruction to a normal run with existing action approvals", async () => {
     const f = fixture();
